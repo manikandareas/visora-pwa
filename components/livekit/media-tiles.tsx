@@ -79,7 +79,7 @@ const classNames = {
 	// layout: Column 2 / Row 1
 	// align: x-start y-center
 	secondTileChatOpen: [
-		"col-start-2 row-start-1",
+		"col-start-1 row-start-1",
 		"self-center justify-self-start",
 	],
 	// Second tile
@@ -144,7 +144,12 @@ export function MediaTiles({ chatOpen }: MediaTilesProps) {
 	return (
 		<div className="pointer-events-none fixed inset-x-0 top-8 bottom-32 z-50 md:top-12 md:bottom-40">
 			<div className="relative mx-auto h-full max-w-2xl px-4 md:px-0">
-				<div className={cn(classNames.grid)}>
+				<div
+					className={cn(
+						"w-full h-full flex flex-col-reverse items-center justify-center md:gap-12",
+					)}
+				>
+					{/* <div className={cn(classNames.grid)}> */}
 					{/* agent */}
 					<div
 						className={cn([
@@ -170,7 +175,9 @@ export function MediaTiles({ chatOpen }: MediaTilesProps) {
 									transition={agentLayoutTransition}
 									state={agentState}
 									audioTrack={agentAudioTrack}
-									className={cn(chatOpen ? "h-[90px]" : "h-auto w-full")}
+									className={cn(
+										chatOpen ? "h-[90px]" : "h-[60px] md:h-fit w-full",
+									)}
 								/>
 							)}
 							{isAvatar && (
@@ -194,9 +201,10 @@ export function MediaTiles({ chatOpen }: MediaTilesProps) {
 
 					<div
 						className={cn([
-							"grid",
-							chatOpen && classNames.secondTileChatOpen,
-							!chatOpen && classNames.secondTileChatClosed,
+							// "grid",
+							// !chatOpen && classNames.secondTileChatOpen,
+							// // !chatOpen && classNames.secondTileChatClosed,
+							"flex items-center justify-center",
 						])}
 					>
 						{/* camera */}
@@ -212,7 +220,7 @@ export function MediaTiles({ chatOpen }: MediaTilesProps) {
 										...animationProps.transition,
 										delay: chatOpen ? 0 : 0.15,
 									}}
-									className="h-[90px]"
+									className="w-full aspect-[9/12] md:aspect-auto"
 								/>
 							)}
 							{/* screen */}
